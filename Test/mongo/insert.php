@@ -72,7 +72,8 @@ $app->get('/Garage/{contrasena}', function (Request $request, Response $response
 	$date= date('l jS \of F Y ');
 	$time = date('h:i:s A');
 	$contraseñaIngresada = $args['contrasena'];
-	
+	echo $date
+	echo $time
     echo $contraseñaIngresada;
 
    // return $response;
