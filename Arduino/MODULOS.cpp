@@ -32,7 +32,7 @@ void setup() {
 
 void loop() {
   valor = digitalRead(PIR); 
-  if(valor == HIGH){ 
+  if(valor == 1){ 
     digitalWrite(led,HIGH); 
   }
   else{
