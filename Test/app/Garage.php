@@ -1,7 +1,5 @@
 <?php
 
-use \Psr\Http\Message\ServerRequestInterface as Request;
-use \Psr\Http\Message\ResponseInterface as Response;
 
 
 require '../vendor/autoload.php';
@@ -18,12 +16,13 @@ $db= $cliente->dbGarage;
 $collection = $db->intento;
 $collectionB =$db->cpassword;
 
-if($_POST){
+$uri= $_SERVER['REQUEST_URI'];
+
 	
 
 	$date= date('l jS \of F Y ');
 	$time = date('h:i:s A');
-	$contrasenaIngresada = $_REQUEST['contrasena'];
+	$contrasenaIngresada = $_GET['contrasena'];
 	$correcta = $collectionB->findOne();
 
 	//Aqui iria la comparacion pero aun no sé en donde está almacenada la contraseña correcta
@@ -67,7 +66,7 @@ if($_POST){
 
 
    
-}
+
 
 
 
