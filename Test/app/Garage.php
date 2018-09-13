@@ -1,5 +1,8 @@
 <?php
-
+error_reporting(E_ALL);//para desabilitar el error 500 y que coloque los errores
+ini_set('display_errors','1');
+use \Psr\Http\Message\ServerRequestInterface as Request;
+use \Psr\Http\Message\ResponseInterface as Response;
 
 
 require '../vendor/autoload.php';
@@ -11,18 +14,17 @@ require '../vendor/autoload.php';
 //coleccion donde esta almacenada la correcta
 
 date_default_timezone_set('America/Guatemala');
-$cliente=new MongoDB\Client('mongodb://ruthlechuga:8564872@clusterproyecto-shard-00-00-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-01-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-02-sgrbk.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ClusterProyecto-shard-0&authSource=admin&retryWrites=true');
+$cliente=new MongoDB\Client('mongodb://ruthlechuga:<PASSWORD>@clusterproyecto-shard-00-00-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-01-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-02-sgrbk.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ClusterProyecto-shard-0&authSource=admin&retryWrites=true');
 $db= $cliente->dbGarage;
 $collection = $db->intento;
 $collectionB =$db->cpassword;
 
-$uri= $_SERVER['REQUEST_URI'];
-
+if($_POST){
 	
 
 	$date= date('l jS \of F Y ');
 	$time = date('h:i:s A');
-	$contrasenaIngresada = $_GET['contrasena'];
+	$contrasenaIngresada = $_REQUEST['contrasena'];
 	$correcta = $collectionB->findOne();
 
 	//Aqui iria la comparacion pero aun no sé en donde está almacenada la contraseña correcta
@@ -66,7 +68,7 @@ $uri= $_SERVER['REQUEST_URI'];
 
 
    
-
+}
 
 
 
