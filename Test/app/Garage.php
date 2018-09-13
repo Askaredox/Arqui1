@@ -1,4 +1,4 @@
-<?php
+﻿<?php
 error_reporting(E_ALL);//para desabilitar el error 500 y que coloque los errores
 ini_set('display_errors','1');
 use \Psr\Http\Message\ServerRequestInterface as Request;
@@ -22,7 +22,7 @@ $collectionB =$db->cpassword;
 	//Aqui iria la comparacion pero aun no sé en donde está almacenada la contraseña correcta
 	if($correcta['password']==$contrasenaIngresada)
 	{
-		echo "<Autorizacion>1</Autorizacion>";//Esto es lo que da como salida si es igual o  no
+		echo "1";//Esto es lo que da como salida si es igual o  no
 					$insert = array(
 						"fecha"=>$date,
 						"hora"=>$time,
@@ -37,7 +37,7 @@ $collectionB =$db->cpassword;
 					}
 	}else
 	{
-		echo "<Autorizacion>0</Autorizacion>";//solo retorna 0 o 1 por ser xml
+		echo "0";//solo retorna 0 o 1 por ser xml
 		
 		$insert = array(
 			"fecha"=>$date,
