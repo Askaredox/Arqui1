@@ -13,11 +13,11 @@ $cliente=new MongoDB\Client('mongodb+srv://ruthlechuga:8564872@clusterproyecto-s
 $db= $cliente->dbGarage;
 $collection = $db->intento;
 $collectionB =$db->cpassword;
-if($_POST){
+
 	
 	$date= date('l jS \of F Y ');
 	$time = date('h:i:s A');
-	$contrasenaIngresada = $_REQUEST['contrasena'];
+	$contrasenaIngresada = htmlspecialchars($_GET['contrasena'],ENT_QUOTES);
 	$correcta = $collectionB->findOne();
 	//Aqui iria la comparacion pero aun no sé en donde está almacenada la contraseña correcta
 	if($correcta['password']==$contrasenaIngresada)
@@ -53,5 +53,5 @@ if($_POST){
 		}
 	}
    
-}
+
 ?>
