@@ -6,19 +6,24 @@ use \Psr\Http\Message\ResponseInterface as Response;
 
 require '../vendor/autoload.php';
 
-$app = new \Slim\App;
+//aplicacion 
+
+//$app = new \Slim\App;
 //'mongodb://ruthlechuga:8564872@clusterproyecto-shard-00-00-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-01-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-02-sgrbk.gcp.mongodb.net:27017/dbAlarmas?replicaSet=ClusterProyecto-shard-0&authSource=admin'
-$cliente= new MongoDB\Client('mongodb://ruthlechuga:8564872@clusterproyecto-shard-00-00-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-01-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-02-sgrbk.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ClusterProyecto-shard-0&authSource=admin&retryWrites=true');
+//coleccion donde esta almacenada la correcta
+
+date_default_timezone_set('America/Guatemala');
+$cliente=new MongoDB\Client('mongodb://ruthlechuga:8564872@clusterproyecto-shard-00-00-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-01-sgrbk.gcp.mongodb.net:27017,clusterproyecto-shard-00-02-sgrbk.gcp.mongodb.net:27017/test?ssl=true&replicaSet=ClusterProyecto-shard-0&authSource=admin&retryWrites=true');
 $db= $cliente->dbGarage;
 $collection = $db->intento;
-$collectionB =$db->cpassword;//coleccion donde esta almacenada la correcta
-date_default_timezone_set('America/Guatemala');
+$collectionB =$db->cpassword;
 
-$app->get('/Garage/{contrasena}', function (Request $request, Response $response, array $args) {
+if($_POST){
+	
 
 	$date= date('l jS \of F Y ');
 	$time = date('h:i:s A');
-	$contrasenaIngresada = $args['contrasena'];
+	$contrasenaIngresada = $_REQUEST['contrasena'];
 	$correcta = $collectionB->findOne();
 
 	//Aqui iria la comparacion pero aun no sé en donde está almacenada la contraseña correcta
@@ -59,11 +64,11 @@ $app->get('/Garage/{contrasena}', function (Request $request, Response $response
 		//	echo "inserción fallida";//no es necesario solo para saber si esta ingreseando o no los datos a la base
 		}
 	}
-	
-   
-});
 
-$app->run();
+
+   
+}
+
 
 
 
